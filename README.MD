@@ -11,6 +11,7 @@ For the backend, **Node.js** is used with **Express.js** which is a popular fram
 For the Database, **MongoDB** is used which is a NoSQL database. MongoDB is used because of its flexibility and scalability. It is easy to store and retrieve data using MongoDB.
 
 The Whole Application is **Containerized using Docker**. It makes the development journey easy for Us.
+
 ### Currently implement features and Coming Soon
 
 Currenlty the Project Implements the feature of Text Based content only. We aim to bring the Audio/Video based features and content soon enough.
@@ -30,6 +31,7 @@ Docker and a Account to pull the Image from docker hub.
 __Commands__
 
 docker pull ImageName/my_project
+
 docker run -p 5173:5173 3000:3000 ImageName
 
 ### If You want to Access the Code
@@ -37,8 +39,11 @@ docker run -p 5173:5173 3000:3000 ImageName
 __Commands__
 
 Install a Git client on your local machine.
+
 Clone the repository using the command: git clone
+
 Install the dependencies using npm install or yarn install
+
 Run the application using npm run dev or yarn dev
 
 
