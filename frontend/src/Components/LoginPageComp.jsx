@@ -3,17 +3,19 @@ import Input from './Input'
 import '../CSS/LoginCss.css'
 import {useForm} from 'react-hook-form'
 import '../CSS/BtnCss.css'
-
+import { Link } from 'react-router-dom'
+import ModeContext from '../Context/ModeContext'
 const LoginPageComp = () => {
+  const {mode}= useContext(ModeContext)
   const {register,handleSubmit} = useForm();
     const onSubmit=(data)=>{
         console.log(data)
     }
   return (
-    <div className='h-screen w-screen border border-black flex'>
+    <div className={`border border-black flex ${mode==='light'?'bg-white text-black': 'bg-[#2f2f2f] text-white'}`}>
       <div  className=' w-3/5 flex flex-col items-center justify-between'>
       <div className='flex flex-col mt-28'>
-        <span className='font-bold text-6xl py-2'>Holla,</span>
+        <span className={`font-bold text-6xl py-2`}>Holla,</span>
         <span  className='font-bold text-6xl'>Welcome Back</span>
         <span className='font-thin text-sm py-2'>Hey welcome back to your Special place</span>
       </div>
@@ -24,7 +26,7 @@ const LoginPageComp = () => {
       <button className='button-29 my-2 bg-purple-500' type='submit'>Sign Up</button>
       </form>
       <div className='flex flex-col py-10'>
-      <span className='font-thin text-sm underline'>Don't have an Account? SignUp</span>
+      <span className='font-thin text-sm underline'>Don't have an Account?<Link to={'/signup'}>SignUn</Link></span>
       </div>      
       </div>
       <div className='w-[600px] h-full'>

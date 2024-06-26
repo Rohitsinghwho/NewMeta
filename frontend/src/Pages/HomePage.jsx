@@ -4,7 +4,7 @@ import NavbarComp from '../Components/NavbarComp'
 const HomePage = () => {
   return (
     <div>
-        <NavbarComp/>
+        {/* <NavbarComp/> */}
     </div>
   )
 }
