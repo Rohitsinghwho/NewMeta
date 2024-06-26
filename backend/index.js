@@ -7,12 +7,9 @@ dotenv.config({
   path:'../.env'
 })
 
-// Your API endpoint logic goes here
-app.get('/api/data', (req, res) => {
-  // Handle request to get data
-  // ...
-  res.json({ data: 'Some data from backend' });
-});
+//Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 ConnectDb().then(()=>{
@@ -23,4 +20,8 @@ ConnectDb().then(()=>{
   console.log("Error in Connecting to server and database ",e);
 })
 
+// Routes
+import RegisterRoute from './Routes/User.Route.js'
 
+
+app.use('/api/user/v1',RegisterRoute);
