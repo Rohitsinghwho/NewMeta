@@ -1,16 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../CSS/BtnCss.css";
 import { FaMoon } from "react-icons/fa";
 import { FaSun } from "react-icons/fa";
 
 import ModeContext from "../Context/ModeContext";
 const NavbarComp = () => {
-  const { mode, setMode } = useContext(ModeContext);
-
-  const handleToggle=()=>{
-    setMode(mode==='light'? 'dark':'light');
-
-  }
+    const { mode, setMode,toggleMode } = useContext(ModeContext);
   return (
     <nav
       className={`border border-b-blue-500 w-full h-12 flex items-center ${
@@ -29,7 +24,7 @@ const NavbarComp = () => {
         </span>
       </div>
       <div className="w-[50%] flex justify-end items-center">
-        <div className="me-3 hover:cursor-pointer" onClick={handleToggle}>
+        <div className="me-3 hover:cursor-pointer" onClick={toggleMode}>
             {mode==='light'?
             <FaMoon color="#7242f5" size={20} />
             :
