@@ -1,0 +1,22 @@
+version: '3.8'  
+services:
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped  # Restart container automatically on failures
+    
+  # Backend service (Express.js)
+  backend:
+    build: ./backend  # Path to your backend directory containing the Dockerfile
+    restart: unless-stopped
+    environment:
+      MONGO_URI: mongodb://mongo:27017/my-mern-app  # Set MongoDB connection string
+    ports:
+      - "5000:5000"  # Map container port 5000 to host port 5000
+
+  # Frontend service (React)
+    frontend:
+      build: ./frontend  # Path to your frontend directory containing the Dockerfile
+      restart: unless-stopped
+      ports:
+        - "5173:5173"  # Map container port 5173 (default web server) to host port 5173
