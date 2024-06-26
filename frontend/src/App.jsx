@@ -5,7 +5,7 @@ import LoginPageComp from './Pages/LoginPageComp'
 const App = () => {
   return(
     <>
-    <LoginPageComp/>
+   <LoginPageComp/> 
     </>
   )
 }

@@ -1,8 +1,14 @@
 import React from 'react'
 import Input from '../Components/Input'
 import '../CSS/LoginCss.css'
-import Button from '../Components/Button'
+import {useForm} from 'react-hook-form'
+import '../CSS/BtnCss.css'
+
 const LoginPageComp = () => {
+  const {register,handleSubmit} = useForm();
+    const onSubmit=(data)=>{
+        console.log(data)
+    }
   return (
     <div className='h-screen w-screen border border-black flex'>
       <div  className=' w-3/5 flex flex-col items-center justify-between'>
@@ -11,12 +17,11 @@ const LoginPageComp = () => {
         <span  className='font-bold text-6xl'>Welcome Back</span>
         <span className='font-thin text-sm py-2'>Hey welcome back to your Special place</span>
       </div>
-      <form className='flex flex-col  py-2'>
-        <Input className='' type='email' placeholder='Robot@gmail.com'/>
-        <Input className=''  type='password' placeholder='***********'/>
+      <form className='flex flex-col  py-2' onSubmit={handleSubmit(onSubmit)}>
+        <Input className='' type='email' placeholder='Robot@gmail.com' id={'Email'} register={register} required/>
+        <Input className=''  type='password' placeholder='***********' id={'Password'} register={register} required/>
         <span className='font-thin text-sm underline'>Forgot Password?</span>
-        <Button text={'Sign In'}/>
-        <Button text={'Google'}/>
+      <button className='button-29 my-2' type='submit'>Sign Up</button>
       </form>
       <div className='flex flex-col py-10'>
       <span className='font-thin text-sm underline'>Don't have an Account? SignUp</span>
