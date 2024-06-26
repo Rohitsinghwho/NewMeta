@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import Input from '../Components/Input'
+import Input from './Input'
 import '../CSS/LoginCss.css'
 import {useForm} from 'react-hook-form'
 import '../CSS/BtnCss.css'
 
-const LoginPageComp = () => {
+const SignUpPageComp = () => {
   const {register,handleSubmit} = useForm();
     const onSubmit=(data)=>{
         console.log(data)
@@ -18,10 +18,11 @@ const LoginPageComp = () => {
         <span className='font-thin text-sm py-2'>Hey welcome back to your Special place</span>
       </div>
       <form className='flex flex-col  py-2' onSubmit={handleSubmit(onSubmit)}>
+        <Input className=''  type='text' placeholder='Shaktiman' id={'FullName'} register={register} required/>
         <Input className='' type='email' placeholder='Robot@gmail.com' id={'Email'} register={register} required/>
         <Input className=''  type='password' placeholder='***********' id={'Password'} register={register} required/>
         <span className='font-thin text-sm underline'>Forgot Password?</span>
-      <button className='button-29 my-2' type='submit'>Sign Up</button>
+      <button className='button-29 my-2 bg-purple-500' type='submit'>Sign Up</button>
       </form>
       <div className='flex flex-col py-10'>
       <span className='font-thin text-sm underline'>Don't have an Account? SignUp</span>
@@ -35,4 +36,4 @@ const LoginPageComp = () => {
   )
 }
 
-export default LoginPageComp
+export default SignUpPageComp
