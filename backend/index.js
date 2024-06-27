@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser';
 import ConnectDb from './db/mongodatabase.js'
 const app = express();
 const port = 5000; 
@@ -10,6 +11,7 @@ dotenv.config({
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 
 ConnectDb().then(()=>{
@@ -22,6 +24,5 @@ ConnectDb().then(()=>{
 
 // Routes
 import RegisterRoute from './Routes/User.Route.js'
-
 
 app.use('/api/user/v1',RegisterRoute);
