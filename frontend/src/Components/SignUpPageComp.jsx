@@ -1,17 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Input from './Input'
 import '../CSS/LoginCss.css'
 import {useForm} from 'react-hook-form'
 import '../CSS/BtnCss.css'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import ModeContext from '../Context/ModeContext'
-
+import axios from 'axios';
+import AdminContext from '../Context/AdminContext'
+import { useNavigate } from 'react-router-dom'
 const SignUpPageComp = () => {
+  const {admin,setAdmin}= useContext(AdminContext);
+  const navigate= useNavigate();
   const {mode}= useContext(ModeContext)
   const {register,handleSubmit} = useForm();
-    const onSubmit=(data)=>{
-        console.log(data)
+  const onSubmit=async(data)=>{
+    const Response= await axios.post('/api/user/v1/RegisterUser',data);
+    console.log(Response.status)
+    if(Response.status===200){
+      if(Response.data.user.isVerified===true){
+        console.log(Response.data.user.isVerified)
+          navigate('/home');
+      }else{
+        navigate('/verify');
+      }
     }
+}   
   return (
     <div className={` border border-black flex ${mode==='light'?'bg-white text-black': 'bg-[#2f2f2f] text-white'}`}>
       <div  className=' w-3/5 flex flex-col items-center justify-between'>

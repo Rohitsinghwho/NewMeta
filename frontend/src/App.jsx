@@ -7,6 +7,7 @@ import ModeContextProvider from './Context/ModeContextProvider'
 import SignUpPageComp from './Components/SignUpPageComp'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './Components/Layout'
+import EmailVerificationPage from './Pages/EmailVerificationPage'
 
 const App = () => { 
   return(
@@ -18,6 +19,9 @@ const App = () => {
             <Route path='/' element={<HomePage/>}/>
             <Route path='/login' element={<LoginPageComp/>}/>
             <Route path='/signup' element={<SignUpPageComp/>}/>
+            <Route path='/verify' element={<EmailVerificationPage/>}/>
+
+
             </Route>
           </Routes>
         </Router>

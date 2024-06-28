@@ -54,9 +54,8 @@ export const RegisterUser = async (req, res, next) => {
     });
     
     const token= user.GenrateToken();
-    sendVerificationEmail(user,token).then(()=>{
-      return res.status(200).json({message:"Email Sent for Verfication to the entered email account"})
-    })
+    await sendVerificationEmail(user,token);
+    return res.status(200).json({message:"Email sent for verfication to the entered account ",user})
   } catch (error) {
     return res.status(400).json({message:error.message="Some Error Occured While Registering user",error})
   }
@@ -119,7 +118,7 @@ export const VerifyEmail=async function(req, res, next) {
       secure: true,   // Use only with HTTPS (for production)
       sameSite: 'strict', // Mitigate CSRF attacks (consider options for your setup)
     });
-    return res.status(200).json({ message: "Email verification successful" ,user});
+    return res.status(200).json({ message: "Email verification successful"});
   } catch (error) {
     console.error(error);
     return res.status(400).json({ message: "Error verifying email" });
@@ -140,3 +139,15 @@ export const logout= async (req,res,next)=>{
   } catch (error) {
     return res.status(400).json({message:"Error while logging out"})
   }}
+
+export const getUser= async(req,res)=>{
+  try {
+    const user= req?.user;
+    if(req?.user){
+      return res.status(200).json({user});
+    }
+    return res.status(404).json({message:"User not found"})
+  } catch (error) {
+    return res.status(400).json({message:"Error while Fetching the user details",error})
+  }
+}
