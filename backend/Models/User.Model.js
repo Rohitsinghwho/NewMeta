@@ -50,7 +50,7 @@ UserSchema.methods.CheckPassword= async function(Password){
 }
 
 UserSchema.methods.GenrateToken= function(){
-  const token =jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn:'1h'})
+  const token =jwt.sign({id:this._id},process.env.JWT_SECRET,)
   // this.verificationToken=token;
   return(
     token

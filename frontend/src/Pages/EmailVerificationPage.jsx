@@ -14,7 +14,6 @@ const MyAlert = ({ message, type }) => {
   };
   
 function EmailVerificationPage() {
-    const [alert,showAlert]= useState(false);
     const {admin,setAdmin}= useContext(AdminContext)
     const navigate= useNavigate()
     const handleVerification=async()=>{
@@ -28,22 +27,17 @@ function EmailVerificationPage() {
         } catch (error) {
             toast(<MyAlert message="Please Verfiy your Email Before proceeding" type="error" />);
         }
-        // console.log("inside")
-        // console.log(Response.response.status)
-        // if(Response.response.status===400){
-        // }
-        // console.log(Response);
     }
 
   return (
 
     <div className='flex justify-center items-center'>
-        <div className='border border-gray-300 rounded-md outline-none shadow-md text-center mt-28 p-8'>
-            <h1 className='text-3xl font-bold mt-6'>Email Verification</h1>
-            <p className='text-md mt-6'>We have sent an Email to verify that it's you.</p>
-            <p className='text-md'>Please check your email for verification link after you click on the link please refresh the Page</p>
-            <p className='text-md'>If you have verified your Email Address please Click on the Button</p>
-            <button onClick={handleVerification} className='text-md bg-purple-500  mt-4 p-3 rounded-md hover:cursor-pointer hover:bg-purple-600'>Proceed</button>
+        <div className='w-[310px] sm:w-96 border border-gray-300 rounded-md outline-none shadow-md text-center mt-28 sm:p-8 p-2'>
+            <h1 className='sm:text-3xl text-2xl font-bold sm:mt-6 mt-3'>Email Verification</h1>
+            <p className='sm:text-md text-sm sm:mt-6 mt-3'>We have sent an Email to verify that it's you.</p>
+            <p className='sm:text-md text-sm'>Please check your email for verification link after you click on the link please refresh the Page</p>
+            <p className='sm:text-md text-sm'>If you have verified your Email Address please Click on the Button</p>
+            <button onClick={handleVerification} className='sm:text-md bg-purple-500  sm:mt-4 sm:p-3 mt-2 p-2 rounded-md hover:cursor-pointer hover:bg-purple-600'>Proceed</button>
             {/* <div className='mt-1 alert'>Please Verify your email first</div> */}
             <ToastContainer />
         </div>

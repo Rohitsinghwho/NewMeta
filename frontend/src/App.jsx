@@ -15,13 +15,11 @@ const App = () => {
       <ModeContextProvider>
         <Router>
           <Routes>
+            <Route path='/verify' element={<EmailVerificationPage/>}/>
             <Route element={<Layout/>}>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/login' element={<LoginPageComp/>}/>
             <Route path='/signup' element={<SignUpPageComp/>}/>
-            <Route path='/verify' element={<EmailVerificationPage/>}/>
-
-
             </Route>
           </Routes>
         </Router>

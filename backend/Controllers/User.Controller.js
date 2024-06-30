@@ -55,7 +55,8 @@ export const RegisterUser = async (req, res, next) => {
     
     const token= user.GenrateToken();
     await sendVerificationEmail(user,token);
-    return res.status(200).json({message:"Email sent for verfication to the entered account ",user})
+    const userToSend= await User.findById(user._id).select('-Password');
+    return res.status(200).json({message:"Email sent for verfication to the entered account ",userToSend})
   } catch (error) {
     return res.status(400).json({message:error.message="Some Error Occured While Registering user",error})
   }
@@ -78,13 +79,15 @@ export const LoginUser= async(req,res,next)=>{
     if(!user.isVerified){
       return res.status(400).json({message:"Please verify your email address" })
     }
+    const userToSend= await User.findById(user._id).select('-Password -createdAt -updatedAt');
     const token= user.GenrateToken();
     res.cookie('auth_token', token, {
       httpOnly: true, // Prevent client-side JavaScript access
       secure: true,   // Use only with HTTPS (for production)
       sameSite: 'strict', // Mitigate CSRF attacks (consider options for your setup)
     });
-    return res.status(200).json({message:"Login Successful"});
+    // console.log(userToSend);
+    return res.status(200).json({message:"Login Successful",userToSend});
   
   } catch (error) {
     return res.status(400).json({message:error.message="Some Error Occured While Logging the User",error})
